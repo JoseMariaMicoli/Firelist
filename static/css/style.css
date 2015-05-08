@@ -1,0 +1,62 @@
+body {
+	background-attachment: scroll;
+}
+
+.navbar{
+	background: rgba(0, 0, 0, 0.8)!important;
+}
+
+.navbar .navbar-brand{
+	color: #fff;
+}
+
+.panel-transparent {
+    background: none;
+    color: #c6c6c6;
+}
+
+.panel-transparent h1{
+	color: #c6c6c6;
+}
+
+.panel-transparent .panel-heading{
+    background: rgba(27, 26, 26, 0.8)!important;
+}
+
+.panel-transparent .panel-body{
+    background: rgba(27, 26, 26, 0.7)!important;
+}
+
+.panel-transparent .panel-footer{
+	background: rgba(122, 130, 136, 0.7)!important;
+}
+
+.panel-transparent .panel-body .task {
+	color: #4d4849;
+}
+
+.list-group-item{
+	background-color: none;
+	background: rgba(100, 150, 200, 0.8)!important;
+}
+
+.editing {
+	border-bottom: none;
+	padding: 0;
+}
+
+.editing .edit {
+	display: block;
+	width: 506px;
+	padding: 13px 17px 12px 17px;
+	margin: 0 0 0 43px;
+}
+
+.editing .view {
+	display: none;
+}
+
+.editing:last-child {
+	margin-bottom: -1px;
+}
+

@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="pt-br" ng-app="firelist" data-framework="firebase">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+    	<meta name="description" content="">
+    	<meta name="author" content="Jose Maria Micoli">
+		<title>Firelist - Dashboard</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+		<link rel='stylesheet' href='static/css/style.css'>
+		<style>[ng-cloak] { display: none; }</style>
+	</head>
+	<body style="background-image: url(static/img/bg.jpg);">
+		<!-- Fixed navbar -->
+		<div class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+		  <div class="navbar-header">
+		    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		      <span class="icon-bar"></span>
+		      <span class="icon-bar"></span>
+		    </button>
+		    <a class="navbar-brand" href="#">Firelist</a>
+		  </div>
+		  <div class="collapse navbar-collapse">
+		    <ul class="nav navbar-nav">
+		      <li class="active"><a href="#">Dashboard</a></li>
+		      <li><a href="#about">Nova lista</a></li>
+		    </ul>
+		  </div><!--/.nav-collapse -->
+		</div>
+		</div>
+		</br></br><br>
+		<div class='container' ng-controller="TodoCtrl">
+			<section class='row'>
+				<div class="col-md-7 col-md-offset-2">
+					<div class="panel panel-transparent">
+						<div class="panel-heading">
+							<h1 class='text-center'>Lista de Tarefas</h1>
+							<span><strong>{{remainingCount}}</strong> coisas a fazer</span>
+							<form ng-submit="addTodo()">
+								<input class='form-control' placeholder="O que tenho que fazer?" ng-model="newTodo" autofocus>
+							</form>
+						</div>
+						<div class="panel-body">
+							<section ng-show="totalCount" ng-cloak>
+								<!-- Mark all todos as complete -->
+								<input type="checkbox" ng-model="allChecked" ng-click="markAll(allChecked)">
+								<label for="toggle-all">Marcar todas como completadas</label>
+						
+								<h3>Minhas tarefas:</h3>
+								<div class="list-group">
+									<div ng-repeat="todo in todos" class="list-group-item" ng-class="{editing: todo == editedTodo}">
+										<div class="view" ng-if='todo !== editedTodo'>
+											<input type="checkbox" ng-model="todo.completed" ng-change="todos.$save(todo)">
+
+											<label class="task" ng-dblclick="editTodo(todo)" ng-if='todo.completed' ng-style="{'text-decoration': 'line-through', 'color': '#cdcdcd'}">{{todo.title}}</label>
+											<label class="task" ng-dblclick="editTodo(todo)" ng-if='!todo.completed' ng-style="{'text-decoration': 'none'}">{{todo.title}}</label>
+
+											<button class='btn btn-danger pull-right' ng-click="removeTodo(todo)"><i class="glyphicon glyphicon-remove"></i></button>
+										</div>
+										<form ng-submit="doneEditing(todo)" ng-if='todo == editedTodo'>
+											<input class="edit" ng-model="todo.title" todo-blur="doneEditing(todo)" todo-focus="todo == editedTodo">
+										</form>
+									</div>
+									<p>Clique duas vezes para editar uma tarefa.</p>
+								</div>
+							</section>
+						</div>
+						<div class="panel-footer">
+							<button class='btn btn-warning' ng-click='clearCompletedTodos()'>Limpar Completadas</button>
+							<p class="pull-right">
+								<strong>
+									©Copyright <a href="http://micoli.net.br">José Maria Micoli</a> under the <a href="LICENSE">MIT</a> license.
+								</strong>
+							</p>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+
+		<!-- AngularJS -->
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+		<!-- Firebase -->
+		<script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
+		<!-- AngularFire -->
+		<script src="https://cdn.firebase.com/libs/angularfire/1.1.1/angularfire.min.js"></script>
+		<!-- app.js -->
+		<script src="static/js/app.js"></script>
+		<!-- todos_ctrl.js -->
+		<script type="text/javascript" src="static/js/controllers/todos_ctrl.js"></script>
+		<!-- todo_focus.js -->
+		<script type="text/javascript" src="static/js/directives/todo_focus.js"></script>
+		<!-- todo_blur.js -->
+		<script type="text/javascript" src="static/js/directives/todo_blur.js"></script>
+	</body>
+</html>
