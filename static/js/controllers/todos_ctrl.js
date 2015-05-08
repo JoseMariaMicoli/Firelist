@@ -1,4 +1,4 @@
-firelist.controller('TodoCtrl', function TodoCtrl($scope, $location, $firebaseArray) {
+firelist.controller('TodoCtrl', function TodoCtrl($scope, $location, toaster, $firebaseArray) {
 	var fireRef = new Firebase('https://myfirelist.firebaseio.com/');
 	$scope.todos = $firebaseArray(fireRef);
 	$scope.newTodo = '';
@@ -28,6 +28,7 @@ firelist.controller('TodoCtrl', function TodoCtrl($scope, $location, $firebaseAr
 			title: newTodo,
 			completed: false
 		});
+		toaster.pop('success', 'Tarefa adicionada com sucesso.');
 		$scope.newTodo = '';
 	};
 
@@ -42,6 +43,7 @@ firelist.controller('TodoCtrl', function TodoCtrl($scope, $location, $firebaseAr
 		var title = todo.title.trim();
 		if (title) {
 			$scope.todos.$save(todo);
+			toaster.pop('success', 'Tarefa modificada com sucesso.');
 		} else {
 			$scope.removeTodo(todo);
 		}
@@ -49,6 +51,7 @@ firelist.controller('TodoCtrl', function TodoCtrl($scope, $location, $firebaseAr
 
 	$scope.removeTodo = function(todo){
 		$scope.todos.$remove(todo);
+		toaster.pop('danger', 'Tarefa removida com sucesso.');
 	};
 
 	// delete all todos that have been completed
@@ -56,6 +59,7 @@ firelist.controller('TodoCtrl', function TodoCtrl($scope, $location, $firebaseAr
 		angular.forEach($scope.todos, function(todo){
 			if (todo.completed){
 				$scope.todos.$remove(todo);
+				toaster.pop('danger', 'Tarefas removidas com sucesso.');
 			}
 		});
 	};
@@ -67,6 +71,7 @@ firelist.controller('TodoCtrl', function TodoCtrl($scope, $location, $firebaseAr
 			todo.completed = allCompleted;
 			console.log(todo)
 			$scope.todos.$save(todo);
+			toaster.pop('success', 'Todas completas');
 		});
 		
 	};

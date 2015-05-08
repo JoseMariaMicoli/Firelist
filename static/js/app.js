@@ -1,2 +1,2 @@
-var firelist = angular.module('firelist', ['firebase']);
+var firelist = angular.module('firelist', ['firebase', 'toaster']);
 
