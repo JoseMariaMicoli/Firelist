@@ -1,0 +1,34 @@
+<nav class="navbar navbar-info" ng-controller="navCtrl">
+	<div class="container-fluid">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#/">Firelist</a>
+		</div>
+
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav navbar-left">
+				<li ng-show="signedIn()"><a href="" data-toggle="modal" data-target="#posModal">Adicionar Tarefa</a></li>
+				<li><a href="#/browse">Ver tarefas</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li ng-hide="signedIn()"><a href="#/login">Entrar</a></li>
+				<li ng-hide="signedIn()"><a href="#/register">Registrar</a></li>
+				<li ng-show="signedIn()"><a href="#/changePassword">Mudar senha</a>
+					<i class="mdi-action-lock"></i>
+				</li>
+				<li ng-show="signedIn()"><a href="" ng-click="logout()">
+					<i class="mdi-action-exit-to-app"></i> Sair</a>
+				</li>
+			</ul>
+		</div><!-- /.navbar-collapse -->
+	</div><!-- /.container-fluid -->
+
+	<div ng-show="signedIn()" ng-include="'views/partials/changepass.html'"></div>
+</nav>

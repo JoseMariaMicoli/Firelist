@@ -1,0 +1,28 @@
+<section id="row">
+	<div class="col-md-6 col-md-offset-3">
+		<div class="panel panel-login" align="center">
+			<div class="panel-heading">
+				<h2>Entrar</h2>
+			</div>
+			<div class="panel-body">
+				<form ng-submit="login(user)">
+					<div class="input-group">
+						<div class="input-group-addon">
+							<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+						</div>
+						<input type="email" ng-model="user.email" placeholder="Email" class="form-control" required>
+					</div><br>
+
+					<div class="input-group">
+						<div class="input-group-addon">
+							<span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+						</div>
+						<input type="password" ng-model="user.password" placeholder="Senha" class="form-control" required>
+					</div><br>
+
+					<input type="submit" value="Entrar" class="btn btn-primary">
+				</form>
+			</div>
+		</div>
+	</div>
+</section>

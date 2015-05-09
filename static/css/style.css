@@ -10,6 +10,32 @@ body {
 	color: #fff;
 }
 
+.img-circle .gravatar {
+	width: 30px;
+}
+
+.panel-login{
+	max-width: 400px;
+	background: none;
+    color: #c6c6c6;
+}
+
+.panel-login h1{
+	color: #c6c6c6;
+}
+
+.panel-login .panel-heading{
+	background: rgba(27, 26, 26, 0.8)!important;
+}
+
+.panel-login .panel-body{
+	background: rgba(27, 26, 26, 0.7)!important;
+}
+
+.panel-login .panel-footer{
+	background: rgba(122, 130, 136, 0.7)!important;
+}
+
 .panel-transparent {
     background: none;
     color: #c6c6c6;

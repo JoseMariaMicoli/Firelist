@@ -1,0 +1,48 @@
+<div class='container' ng-controller="TodoCtrl">
+			<section class='row'>
+				<div class="col-md-7 col-md-offset-2">
+					<div class="panel panel-transparent">
+						<div class="panel-heading">
+							<h1 class='text-center'>Lista de Tarefas</h1>
+							<span><strong>{{remainingCount}}</strong> coisas a fazer</span>
+							<form ng-submit="addTodo()">
+								<input class='form-control' placeholder="O que tenho que fazer?" ng-model="newTodo" autofocus>
+							</form>
+						</div>
+						<div class="panel-body">
+							<section ng-show="totalCount" ng-cloak>
+								<!-- Mark all todos as complete -->
+								<input type="checkbox" ng-model="allChecked" ng-click="markAll(allChecked)">
+								<label for="toggle-all">Marcar todas como completadas</label>
+						
+								<h3>Minhas tarefas:</h3>
+								<div class="list-group">
+									<div ng-repeat="todo in todos" class="list-group-item" ng-class="{editing: todo == editedTodo}">
+										<div class="view" ng-if='todo !== editedTodo'>
+											<input type="checkbox" ng-model="todo.completed" ng-change="todos.$save(todo)">
+
+											<label class="task" ng-dblclick="editTodo(todo)" ng-if='todo.completed' ng-style="{'text-decoration': 'line-through', 'color': '#b1b1b1'}">{{todo.title}}</label>
+											<label class="task" ng-dblclick="editTodo(todo)" ng-if='!todo.completed' ng-style="{'text-decoration': 'none'}">{{todo.title}}</label>
+
+											<button class='btn btn-danger pull-right' ng-click="removeTodo(todo)"><i class="glyphicon glyphicon-remove"></i></button>
+										</div>
+										<form ng-submit="doneEditing(todo)" ng-if='todo == editedTodo'>
+											<input class="edit" ng-model="todo.title" todo-blur="doneEditing(todo)" todo-focus="todo == editedTodo">
+										</form>
+									</div>
+									<p>Clique duas vezes para editar uma tarefa.</p>
+								</div>
+							</section>
+						</div>
+						<div class="panel-footer">
+							<button class='btn btn-warning' ng-click='clearCompletedTodos()'>Limpar Completadas</button>
+							<p class="pull-right">
+								<strong>
+									©Copyright <a href="http://micoli.net.br">José Maria Micoli</a> under the <a href="LICENSE">MIT</a> license.
+								</strong>
+							</p>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>

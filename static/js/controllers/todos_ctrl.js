@@ -1,8 +1,11 @@
-firelist.controller('TodoCtrl', function TodoCtrl($scope, $location, toaster, $firebaseArray) {
-	var fireRef = new Firebase('https://myfirelist.firebaseio.com/');
+firelist.controller('TodoCtrl', function TodoCtrl(FURL, $scope, $location, toaster, $firebaseArray, Auth) {
+	var fireRef = new Firebase(FURL);
 	$scope.todos = $firebaseArray(fireRef);
 	$scope.newTodo = '';
 	$scope.editedTodo = null;
+
+	$scope.user = Auth.user;
+	$scope.signedIn = Auth.signedIn;
 
 	$scope.$watch('todos', function(){
 		var total = 0;
